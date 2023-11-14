@@ -28,7 +28,7 @@ const accessChat = asyncHandler(async (req, res) => {
         res.send(isChat[0]);
     } else {
         var chatData = {
-            name: "sender",
+            chatData: "sender",
             isGroupChat: false,
             users: [req.user._id, userId],
         };
@@ -87,7 +87,7 @@ const createGroupChat = asyncHandler(async (req, res) => {
 
     try {
         const groupChat = await Chat.create({
-            name: req.body.name,
+            chatName: req.body.name,
             users: users,
             isGroupChat: true,
             groupAdmin: req.user,
@@ -108,12 +108,12 @@ const createGroupChat = asyncHandler(async (req, res) => {
 // @route   PUT /api/chat/rename
 // @access  Protected
 const renameGroup = asyncHandler(async (req, res) => {
-    const { chatId, name } = req.body;
+    const { chatId, chatName } = req.body;
 
     const updatedChat = await Chat.findByIdAndUpdate(
         chatId,
         {
-            name: name,
+            chatName: chatName,
         },
         {
             new: true,

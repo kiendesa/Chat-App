@@ -11,7 +11,7 @@ import GroupChatModel from './miscellaneous/GroupChatModel';
 
 const MyChats = ({ fetchAgain }) => {
 
-    const [loggedUser, serLoggedUser] = useState();
+    const [loggedUser, setLoggedUser] = useState();
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
     const toast = useToast();
@@ -38,7 +38,7 @@ const MyChats = ({ fetchAgain }) => {
     }
 
     useEffect(() => {
-        serLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
+        setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
         fetchChats();
     }, [fetchAgain])
 
@@ -97,7 +97,7 @@ const MyChats = ({ fetchAgain }) => {
                             key={chat._id}
                         >
                             <Text>
-                                {!chat.isGroupChat ? getSender(loggedUser, chat.users) : chat.name}
+                                {!chat.isGroupChat ? getSender(loggedUser, chat.users) : chat.chatName}
                             </Text>
                         </Box>
                     ))}

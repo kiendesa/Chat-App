@@ -227,6 +227,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
                             <Input
                                 placeholder='Chat name'
                                 mb={3}
+                                value={groupChatName}
                                 onChange={(e) => setGroupChatName(e.target.value)}
                             />
                             <Button
