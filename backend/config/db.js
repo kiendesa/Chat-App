@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const colors = require("colors");
+const dotenv = require("dotenv");
 
 const URL = 'mongodb+srv://congkiennk1708:Gj4eEpMy6vKWG6DE@cluster0.dx5i8ba.mongodb.net/app-chat?retryWrites=true&w=majority'
-
 const connectDB = async () => {
     try {
         await mongoose.connect(
