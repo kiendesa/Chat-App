@@ -133,7 +133,6 @@ const SideDrawer = () => {
                                 count={notification.length}
                                 effect={Effect.SCALE}
                             >
-
                             </NotificationBadge>
                             <BellIcon fontSize="2xl" m={1} />
                         </MenuButton>

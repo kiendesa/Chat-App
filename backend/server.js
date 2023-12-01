@@ -8,7 +8,6 @@ const connectDB = require('./config/db')
 const generateToken = require('./config/generateToken')
 const { notFound, errorHandler } = require('./middleware/errorMiddlware')
 
-
 const app = express();
 dotenv.config();
 connectDB;
