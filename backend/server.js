@@ -8,6 +8,7 @@ const connectDB = require('./config/db')
 const generateToken = require('./config/generateToken')
 const { notFound, errorHandler } = require('./middleware/errorMiddlware')
 const cors = require('cors');
+const http = require('http');
 
 const app = express();
 app.use(cors());
@@ -37,18 +38,12 @@ const server = app.listen(
     console.log(`Server running on PORT ${PORT}...`)
 );
 
-// Enable CORS for a specific origin
-// app.use(cors({
-//     origin: 'http://localhost:3000', // Replace with your frontend's origin
-//     credentials: true,
-//   }));
-
 const io = require("socket.io")(server, {
-    pingTimeout: 10000,
-    cors: {
-        origin: "http://localhost:3000",
-        credentials: true,
-    },
+    // pingTimeout: 10000,
+    // cors: {
+    //     origin: "http://172.24.0.2:3000",
+   
+    // },
 });
 
 io.on("connection", (socket) => {

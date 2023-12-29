@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ChatState } from '../../Context/ChatProvider';
-import { Box, FormControl, IconButton, Input, Spinner, Text, useToast } from '@chakra-ui/react';
+import { Box, FormControl, IconButton, Input, Spinner, Text, background, useToast } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { getSender, getSenderFull } from '../../config/ChatLogics';
 import ProfileModal from '../miscellaneous/ProfileModal';
@@ -12,6 +12,8 @@ import animationData from '../../animation/typing.json'
 
 import ScrollableChat from './ScrollableChat';
 import io from 'socket.io-client';
+import EmojiPicker from '../../animation/EmojiPicker';
+import data from '@emoji-mart/data'
 
 const ENDPOINT = "http://localhost:5000";
 var socket, selectedChatCompare;
@@ -158,6 +160,23 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         socket.emit("stop typing", selectedChat._id);
     };
 
+    const handleSelectEmoji = (emoji) => {
+        console.log('Selected Emoji:', emoji);
+        setNewMessage((prev) => prev + emoji.native);
+      };
+
+      const onEmojClick = (e) => {
+        console.log("aaaaaaa",e.target.value);
+      }
+
+      const [inputStr, setInputStr] = useState('');
+      const [showPicker, setShowPicker] = useState(false);
+     
+      const onEmojiClick = (event, emojiObject) => {
+        setInputStr(prevInput => prevInput + emojiObject.emoji);
+        setShowPicker(false);
+      };
+
     return (
         <>
             {
@@ -216,7 +235,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                 </div>
                             )}
 
-                            <FormControl onKeyDown={sendMessage} isRequired mt={3}>
+                            <FormControl className='aaaa' onKeyDown={sendMessage} isRequired mt={3}>
                                 {/* typing */}
                                 {isTyping ?
                                     <div>
@@ -226,14 +245,20 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                             style={{ marginBottom: 5, marginLeft: 0 }}
                                         />
                                     </div> : <></>}
-                                <Input
-                                    variant="filled"
-                                    bgnp="#E0E0E0"
+                            <div className='input-container'>
+                               <Input
                                     placeholder='Enter a message..'
                                     onChange={typingHandler}
                                     onBlur={handleBlur}
-                                    value={newMessage} />
+                                    value={newMessage}
+                                    // onChange={e => setInputStr(e.target.value)}
+                                />
+                            </div>
                             </FormControl>
+                            {showPicker && <EmojiPicker
+          pickerStyle={{ width: '100%' }}
+          onEmojiClick={onEmojiClick} />}
+                            {/* <span><EmojiPicker onEmojiClick={onEmojiClick} onSelect={handleSelectEmoji} /></span> */}
                         </Box>
                     </>
                 ) : (
