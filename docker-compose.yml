@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./frontend  # Đường dẫn đến thư mục chứa Dockerfile của frontend
+    ports:
+      - "3000:3000"
+       # Mount volume giữa máy host và container
+    container_name: frontend
+    volumes:
+      - ./frontend:/usr/src/app
+    networks:
+      - mynetwork
+    # Luôn chạy container và tự động khởi động lại khi container dừng
+    restart: always
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend  # Đường dẫn đến thư mục chứa Dockerfile của backend
+    ports:
+      - "5000:5000"
+     # Mount volume giữa máy host và container
+    container_name: backend
+    volumes:
+      - ./backend:/usr/src/app
+    # Luôn chạy container và tự động khởi động lại khi container dừng
+    restart: always
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:

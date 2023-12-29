@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    # Sử dụng Dockerfile ở thư mục hiện tại
+    build: .
+    # Mở cổng 3000 của container và map nó với cổng 3000 của máy host
+    ports:
+      - "5000:5000"
+    networks:
+      - mynetwork
+    # Mount volume giữa máy host và container
+    container_name: back
+    volumes:
+      - .:/usr/src/app
+    # Luôn chạy container và tự động khởi động lại khi container dừng
+    restart: always
+networks:
+  mynetwork:

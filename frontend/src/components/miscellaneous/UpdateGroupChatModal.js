@@ -184,9 +184,6 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
         setGroupChatName("");
     }
 
-    const handleLeave = (user) => {
-
-    }
 
     return (
         <>
