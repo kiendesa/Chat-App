@@ -159,13 +159,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         socket.emit("stop typing", selectedChat._id);
     };
 
-    const [showPicker, setShowPicker] = useState(false);
-
-    const onEmojiClick = (event, emojiObject) => {
-        setInputStr(prevInput => prevInput + emojiObject.emoji);
-        setShowPicker(false);
-    };
-
     return (
         <>
             {
@@ -244,10 +237,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                     />
                                 </div>
                             </FormControl>
-                            {showPicker && <EmojiPicker
-                                pickerStyle={{ width: '100%' }}
-                                onEmojiClick={onEmojiClick} />}
-                            {/* <span><EmojiPicker onEmojiClick={onEmojiClick} onSelect={handleSelectEmoji} /></span> */}
                         </Box>
                     </>
                 ) : (
