@@ -1,5 +1,5 @@
 # Sử dụng image chính thức của Node.js từ Docker Hub
-FROM node:14
+FROM --platform=linux/x86_64 node:14
 
 # Tạo thư mục làm việc trong container
 WORKDIR /usr/src/app
