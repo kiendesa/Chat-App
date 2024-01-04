@@ -10,8 +10,9 @@ services:
     container_name: frontend
     volumes:
       - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
     networks:
-      - mynetwork
+      - react-express
     # Luôn chạy container và tự động khởi động lại khi container dừng
     restart: always
     depends_on:
@@ -26,10 +27,11 @@ services:
     container_name: backend
     volumes:
       - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
     # Luôn chạy container và tự động khởi động lại khi container dừng
     restart: always
     networks:
-      - mynetwork
+      - react-express
 
 networks:
-  mynetwork:
+  react-express:

@@ -39,11 +39,11 @@ const server = app.listen(
 );
 
 const io = require("socket.io")(server, {
-    // pingTimeout: 10000,
-    // cors: {
-    //     origin: "http://172.24.0.2:3000",
-   
-    // },
+    pingTimeout: 10000,
+    cors: {
+        origin: "http://localhost:3000",
+
+    },
 });
 
 io.on("connection", (socket) => {
