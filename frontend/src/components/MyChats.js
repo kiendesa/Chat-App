@@ -13,7 +13,6 @@ const MyChats = ({ fetchAgain }) => {
 
     const [loggedUser, setLoggedUser] = useState();
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-
     const toast = useToast();
 
     const fetchChats = async () => {
@@ -38,7 +37,6 @@ const MyChats = ({ fetchAgain }) => {
     }
 
     useEffect(() => {
-        setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
         fetchChats();
     }, [fetchAgain])
 
@@ -94,10 +92,10 @@ const MyChats = ({ fetchAgain }) => {
                             px={3}
                             py={2}
                             borderRadius="lg"
-                            key={chat._id}
+                            key={chat?._id}
                         >
                             <Text>
-                                {!chat.isGroupChat ? getSender(loggedUser, chat.users) : chat.chatName}
+                                {!chat.isGroupChat ? getSender(JSON.parse(localStorage.getItem("userInfo")), chat.users) : chat.chatName}
                             </Text>
                         </Box>
                     ))}

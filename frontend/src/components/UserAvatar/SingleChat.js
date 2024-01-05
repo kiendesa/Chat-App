@@ -47,7 +47,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 }
             }
             const { data } = await axios.get(`/api/message/${selectedChat._id}`, config);
-            console.log("message", data);
             setMessages(data);
             setLoading(false);
 
@@ -78,8 +77,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         selectedChatCompare = selectedChat
     }, [selectedChat])
 
-    console.log("noti", notification);
-
     const sendMessage = async (event) => {
 
 
@@ -99,7 +96,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     }, config);
 
                 socket.emit('new message', data)
-                console.log("11111", messages);
                 setMessages([...messages, data])
             } catch (error) {
                 toast({
