@@ -1,15 +1,18 @@
 # Use an official Node runtime as a parent image
-FROM --platform=linux/x86_64 node:14
+FROM node:20
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy dependency definitions
-COPY package.json /usr/src/app
-COPY package-lock.json /usr/src/app
+# Sao chép package.json và package-lock.json để tận dụng lợi ích của Docker cache layer
+COPY package.json /usr/src/app/package.json
+COPY package-lock.json /usr/src/app/package-lock.json
 
 # Install app dependencies
-RUN npm install
+# RUN npm install
+
+# Install the latest npm version
+RUN npm install -g npm@latest
 
 RUN <<EOF
 apt-get update

@@ -10,6 +10,10 @@ const messageModel = mongoose.Schema(
             type: String,
             trim: true
         },
+        images: [{
+            type: String,  // Assuming the image paths or URLs will be stored as strings
+            trim: true
+        }],
         chat: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Chat"

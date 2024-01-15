@@ -44,6 +44,14 @@ const ScrollableChat = ({ messages }) => {
                                 maxWidth: "75%",
                             }}
                         >
+                            {/* <Avatar
+                                mt="7px"
+                                mr={1}
+                                size="sm"
+                                cursor="pointer"
+                                name={m.sender.name}
+                                src={m.content}
+                            /> */}
                             {m.content}
                         </span>
                     </div>

@@ -1,5 +1,5 @@
 # Sử dụng image chính thức của Node.js từ Docker Hub
-FROM node:14
+FROM node:20
 
 # Tạo thư mục làm việc trong container
 WORKDIR /usr/src/app
@@ -10,6 +10,9 @@ COPY package-lock.json /usr/src/app/package-lock.json
 
 # Cài đặt các dependencies của ứng dụng
 RUN npm install
+
+# Install the latest npm version
+RUN npm install -g npm@latest
 
 RUN npm install -g nodemon
 

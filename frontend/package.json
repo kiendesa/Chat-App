@@ -21,6 +21,7 @@
     "lottie-web": "^5.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
     "react-lottie": "^1.2.3",
     "react-notification-badge": "^1.5.1",
     "react-router-dom": "^5.3.4",
@@ -55,6 +56,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3"
+    "@types/react-router-dom": "^5.3.3",
+    "html-webpack-plugin": "^5.5.0"
   }
 }
